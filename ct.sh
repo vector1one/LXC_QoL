@@ -10,6 +10,6 @@ apt update
 /usr/bin/apt install -y docker
 /usr/bin/apt install -y docker-compose
 /usr/bin/apt install -y cockpit
-echo “PermitRootLogin yes“ >> /etc/ssh/sshd_config
+sed -i '/^PermitRootLogin/ c\PermitRootLogin yes' /etc/ssh/sshd_config || echo 'PermitRootLogin yes' | sudo tee -a /etc/ssh/sshd_config
 service sshd restart
 
